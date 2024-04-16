@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace memory_simulator
 {
-    public partial class Form1 : Form
+    public partial class frmMemorySimulator : Form
     {
         private const int Linhas = 8;
         private const int Colunas = 16;
@@ -23,12 +23,13 @@ namespace memory_simulator
 
         private Label[,] memoriaPrincipal;
         private Label[,] memoriaCache;
-        public Form1()
+        public frmMemorySimulator()
         {
             InitializeComponent();
             MemoriaPrincipal();
             MemoriaCache();
             btnAlternarVerificacao.Enabled = false;
+            btnResetar.Click += new EventHandler(btnResetar_Click);
         }
 
 
@@ -275,6 +276,44 @@ namespace memory_simulator
                 }
             }
         }
+
+        private void btnResetar_Click(object sender, EventArgs e)
+        {
+            // Limpa os valores aleatórios
+            valoresAleatorios.Clear();
+
+            // Limpa os valores e as cores de fundo da memória principal
+            for (int i = 0; i < Linhas; i++)
+            {
+                for (int j = 0; j < Colunas; j++)
+                {
+                    memoriaPrincipal[i, j].Text = "";
+                    memoriaPrincipal[i, j].BackColor = Color.Transparent;
+                }
+            }
+
+            // Limpa os valores e as cores de fundo da memória cache
+            for (int i = 0; i < CLinhas; i++)
+            {
+                for (int j = 0; j < CColunas; j++)
+                {
+                    memoriaCache[i, j].Text = "0";
+                    memoriaCache[i, j].BackColor = Color.Transparent;
+                }
+            }
+
+            // Desmarca todos os itens da CheckedListBox
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+            {
+                checkedListBox1.SetItemChecked(i, false);
+            }
+
+            // Desmarca a seleção atual na CheckedListBox
+            checkedListBox1.ClearSelected();
+            checkedListBox1.Items.Clear();
+            valoresAleatorios.Clear();
+        }
+
 
         private void MemoriaPrincipal()
         {

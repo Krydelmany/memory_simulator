@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace memory_simulator
 {
-    partial class Form1
+    partial class frmMemorySimulator
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@ namespace memory_simulator
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMemorySimulator));
             this.gbMemoriaPrincipal = new System.Windows.Forms.GroupBox();
             this.btnGerarNumeros = new System.Windows.Forms.Button();
             this.btnAlternarVerificacao = new System.Windows.Forms.Button();
@@ -44,6 +44,7 @@ namespace memory_simulator
             this.btnListaAcesso = new System.Windows.Forms.Button();
             this.gbMemoriaCache = new System.Windows.Forms.GroupBox();
             this.btnLimparLista = new System.Windows.Forms.Button();
+            this.btnResetar = new System.Windows.Forms.Button();
             this.gpListaAcesso.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,7 +60,7 @@ namespace memory_simulator
             // 
             // btnGerarNumeros
             // 
-            this.btnGerarNumeros.Location = new System.Drawing.Point(94, 303);
+            this.btnGerarNumeros.Location = new System.Drawing.Point(64, 302);
             this.btnGerarNumeros.Name = "btnGerarNumeros";
             this.btnGerarNumeros.Size = new System.Drawing.Size(123, 23);
             this.btnGerarNumeros.TabIndex = 1;
@@ -117,7 +118,7 @@ namespace memory_simulator
             // 
             // btnLimparMP
             // 
-            this.btnLimparMP.Location = new System.Drawing.Point(223, 303);
+            this.btnLimparMP.Location = new System.Drawing.Point(193, 302);
             this.btnLimparMP.Name = "btnLimparMP";
             this.btnLimparMP.Size = new System.Drawing.Size(75, 23);
             this.btnLimparMP.TabIndex = 7;
@@ -138,7 +139,7 @@ namespace memory_simulator
             // btnListaAcesso
             // 
             this.btnListaAcesso.AccessibleDescription = "";
-            this.btnListaAcesso.Location = new System.Drawing.Point(94, 332);
+            this.btnListaAcesso.Location = new System.Drawing.Point(64, 331);
             this.btnListaAcesso.Name = "btnListaAcesso";
             this.btnListaAcesso.Size = new System.Drawing.Size(123, 23);
             this.btnListaAcesso.TabIndex = 9;
@@ -158,7 +159,7 @@ namespace memory_simulator
             // 
             // btnLimparLista
             // 
-            this.btnLimparLista.Location = new System.Drawing.Point(224, 331);
+            this.btnLimparLista.Location = new System.Drawing.Point(194, 330);
             this.btnLimparLista.Name = "btnLimparLista";
             this.btnLimparLista.Size = new System.Drawing.Size(75, 23);
             this.btnLimparLista.TabIndex = 12;
@@ -166,11 +167,22 @@ namespace memory_simulator
             this.btnLimparLista.UseVisualStyleBackColor = true;
             this.btnLimparLista.Click += new System.EventHandler(this.btnLimparMP_Click);
             // 
-            // Form1
+            // btnResetar
+            // 
+            this.btnResetar.Location = new System.Drawing.Point(384, 303);
+            this.btnResetar.Name = "btnResetar";
+            this.btnResetar.Size = new System.Drawing.Size(75, 23);
+            this.btnResetar.TabIndex = 13;
+            this.btnResetar.Text = "Resetar";
+            this.btnResetar.UseVisualStyleBackColor = true;
+            this.btnResetar.Click += new System.EventHandler(this.btnResetar_Click);
+            // 
+            // frmMemorySimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnResetar);
             this.Controls.Add(this.btnLimparLista);
             this.Controls.Add(this.gbMemoriaCache);
             this.Controls.Add(this.btnListaAcesso);
@@ -183,7 +195,7 @@ namespace memory_simulator
             this.Controls.Add(this.btnGerarNumeros);
             this.Controls.Add(this.gbMemoriaPrincipal);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "frmMemorySimulator";
             this.Text = "Memory Simulator";
             this.gpListaAcesso.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -209,6 +221,7 @@ namespace memory_simulator
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.GroupBox gbMemoriaCache;
         private Button btnLimparLista;
+        private Button btnResetar;
     }
 }
 
