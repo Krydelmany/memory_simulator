@@ -40,12 +40,14 @@ namespace memory_simulator
             this.gpListaAcesso = new System.Windows.Forms.GroupBox();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.btnLimparMP = new System.Windows.Forms.Button();
-            this.Acesso_Constante = new System.Windows.Forms.Button();
             this.btnListaAcesso = new System.Windows.Forms.Button();
             this.gbMemoriaCache = new System.Windows.Forms.GroupBox();
             this.btnLimparLista = new System.Windows.Forms.Button();
             this.btnResetar = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.gpListaAcesso.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbMemoriaPrincipal
@@ -60,7 +62,7 @@ namespace memory_simulator
             // 
             // btnGerarNumeros
             // 
-            this.btnGerarNumeros.Location = new System.Drawing.Point(64, 302);
+            this.btnGerarNumeros.Location = new System.Drawing.Point(6, 19);
             this.btnGerarNumeros.Name = "btnGerarNumeros";
             this.btnGerarNumeros.Size = new System.Drawing.Size(123, 23);
             this.btnGerarNumeros.TabIndex = 1;
@@ -70,17 +72,17 @@ namespace memory_simulator
             // 
             // btnAlternarVerificacao
             // 
-            this.btnAlternarVerificacao.Location = new System.Drawing.Point(171, 387);
+            this.btnAlternarVerificacao.Location = new System.Drawing.Point(163, 100);
             this.btnAlternarVerificacao.Name = "btnAlternarVerificacao";
-            this.btnAlternarVerificacao.Size = new System.Drawing.Size(97, 23);
+            this.btnAlternarVerificacao.Size = new System.Drawing.Size(103, 23);
             this.btnAlternarVerificacao.TabIndex = 2;
-            this.btnAlternarVerificacao.Text = "Acessar Lista";
+            this.btnAlternarVerificacao.Text = "Cache Miss";
             this.btnAlternarVerificacao.UseVisualStyleBackColor = true;
             this.btnAlternarVerificacao.Click += new System.EventHandler(this.btnAlternarVerificacao_Click);
             // 
             // tbTimeStep
             // 
-            this.tbTimeStep.Location = new System.Drawing.Point(94, 389);
+            this.tbTimeStep.Location = new System.Drawing.Point(82, 102);
             this.tbTimeStep.Name = "tbTimeStep";
             this.tbTimeStep.Size = new System.Drawing.Size(75, 20);
             this.tbTimeStep.TabIndex = 3;
@@ -91,7 +93,7 @@ namespace memory_simulator
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 392);
+            this.label1.Location = new System.Drawing.Point(3, 104);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 13);
             this.label1.TabIndex = 4;
@@ -118,7 +120,8 @@ namespace memory_simulator
             // 
             // btnLimparMP
             // 
-            this.btnLimparMP.Location = new System.Drawing.Point(193, 302);
+            this.btnLimparMP.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnLimparMP.Location = new System.Drawing.Point(135, 19);
             this.btnLimparMP.Name = "btnLimparMP";
             this.btnLimparMP.Size = new System.Drawing.Size(75, 23);
             this.btnLimparMP.TabIndex = 7;
@@ -126,20 +129,10 @@ namespace memory_simulator
             this.btnLimparMP.UseVisualStyleBackColor = true;
             this.btnLimparMP.Click += new System.EventHandler(this.btnLimparLista_Click);
             // 
-            // Acesso_Constante
-            // 
-            this.Acesso_Constante.Location = new System.Drawing.Point(94, 415);
-            this.Acesso_Constante.Name = "Acesso_Constante";
-            this.Acesso_Constante.Size = new System.Drawing.Size(174, 23);
-            this.Acesso_Constante.TabIndex = 8;
-            this.Acesso_Constante.Text = "Acesso Constante";
-            this.Acesso_Constante.UseVisualStyleBackColor = true;
-            this.Acesso_Constante.Click += new System.EventHandler(this.Acesso_Constante_Click);
-            // 
             // btnListaAcesso
             // 
             this.btnListaAcesso.AccessibleDescription = "";
-            this.btnListaAcesso.Location = new System.Drawing.Point(64, 331);
+            this.btnListaAcesso.Location = new System.Drawing.Point(6, 48);
             this.btnListaAcesso.Name = "btnListaAcesso";
             this.btnListaAcesso.Size = new System.Drawing.Size(123, 23);
             this.btnListaAcesso.TabIndex = 9;
@@ -150,7 +143,7 @@ namespace memory_simulator
             // gbMemoriaCache
             // 
             this.gbMemoriaCache.Font = new System.Drawing.Font("Segoe UI Emoji", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbMemoriaCache.Location = new System.Drawing.Point(566, 285);
+            this.gbMemoriaCache.Location = new System.Drawing.Point(566, 258);
             this.gbMemoriaCache.Name = "gbMemoriaCache";
             this.gbMemoriaCache.Size = new System.Drawing.Size(191, 153);
             this.gbMemoriaCache.TabIndex = 11;
@@ -159,7 +152,8 @@ namespace memory_simulator
             // 
             // btnLimparLista
             // 
-            this.btnLimparLista.Location = new System.Drawing.Point(194, 330);
+            this.btnLimparLista.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnLimparLista.Location = new System.Drawing.Point(135, 48);
             this.btnLimparLista.Name = "btnLimparLista";
             this.btnLimparLista.Size = new System.Drawing.Size(75, 23);
             this.btnLimparLista.TabIndex = 12;
@@ -169,40 +163,60 @@ namespace memory_simulator
             // 
             // btnResetar
             // 
-            this.btnResetar.Location = new System.Drawing.Point(384, 303);
+            this.btnResetar.Location = new System.Drawing.Point(240, 19);
             this.btnResetar.Name = "btnResetar";
-            this.btnResetar.Size = new System.Drawing.Size(75, 23);
+            this.btnResetar.Size = new System.Drawing.Size(119, 23);
             this.btnResetar.TabIndex = 13;
-            this.btnResetar.Text = "Resetar";
+            this.btnResetar.Text = "Cancelar operação";
             this.btnResetar.UseVisualStyleBackColor = true;
             this.btnResetar.Click += new System.EventHandler(this.btnResetar_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(272, 100);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(87, 23);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "Cache Hit";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnGerarNumeros);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btnAlternarVerificacao);
+            this.groupBox1.Controls.Add(this.btnResetar);
+            this.groupBox1.Controls.Add(this.tbTimeStep);
+            this.groupBox1.Controls.Add(this.btnLimparLista);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.btnLimparMP);
+            this.groupBox1.Controls.Add(this.btnListaAcesso);
+            this.groupBox1.Location = new System.Drawing.Point(12, 258);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(378, 153);
+            this.groupBox1.TabIndex = 15;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Ações";
             // 
             // frmMemorySimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnResetar);
-            this.Controls.Add(this.btnLimparLista);
+            this.ClientSize = new System.Drawing.Size(800, 434);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbMemoriaCache);
-            this.Controls.Add(this.btnListaAcesso);
-            this.Controls.Add(this.Acesso_Constante);
-            this.Controls.Add(this.btnLimparMP);
             this.Controls.Add(this.gpListaAcesso);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.tbTimeStep);
-            this.Controls.Add(this.btnAlternarVerificacao);
-            this.Controls.Add(this.btnGerarNumeros);
             this.Controls.Add(this.gbMemoriaPrincipal);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmMemorySimulator";
             this.Text = "Memory Simulator";
             this.gpListaAcesso.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
-
         private void tbTimeStep_TextChanged(object sender, EventArgs e)
         {
         }
@@ -216,12 +230,13 @@ namespace memory_simulator
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox gpListaAcesso;
         private System.Windows.Forms.Button btnLimparMP;
-        private System.Windows.Forms.Button Acesso_Constante;
         private System.Windows.Forms.Button btnListaAcesso;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.GroupBox gbMemoriaCache;
         private Button btnLimparLista;
         private Button btnResetar;
+        private Button button1;
+        private GroupBox groupBox1;
     }
 }
 

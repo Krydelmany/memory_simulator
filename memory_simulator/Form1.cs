@@ -29,6 +29,7 @@ namespace memory_simulator
             MemoriaPrincipal();
             MemoriaCache();
             btnAlternarVerificacao.Enabled = false;
+            button1.Enabled = false;
             btnResetar.Click += new EventHandler(btnResetar_Click);
         }
 
@@ -102,6 +103,8 @@ namespace memory_simulator
                 }
             }
         }
+
+        //caso sem utilizar remover
         private void VerificarListaAcesso()
         {
             // Itera sobre os itens da CheckedListBox
@@ -128,60 +131,82 @@ namespace memory_simulator
 
         private async void btnAlternarVerificacao_Click(object sender, EventArgs e)
         {
-
+            button1.Enabled = Enabled;
             await VerificarValoresNaMemoriaPrincipal();
         }
 
 
-
-
-        bool loop_verif = false; // Inicialmente, o loop não está ativo
-        private bool botaoClicado = false;
-        private async void Acesso_Constante_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            // Alterna o estado do botão
-            botaoClicado = !botaoClicado;
+            VerificarValoresNaMemoria_Cache();
+        }
 
-            // Define a cor do botão com base no estado atual
-            if (botaoClicado)
-            {
-                Acesso_Constante.BackColor = Color.LightGreen; // Define a cor para verde
-            }
-            else
-            {
-                Acesso_Constante.BackColor = SystemColors.Control; // Retorna a cor ao normal
-            }
-
-            // Inverte o valor de loop_verif
-            loop_verif = !loop_verif;
-
-            // Se loop_verif agora for falso, significa que o usuário deseja parar o loop
-            if (!loop_verif)
-            {
-                return;
-            }
-
-            int TimeStep = 100; // Tempo de atraso padrão
+        private async Task VerificarValoresNaMemoria_Cache()
+        {
+            int TimeStep = 100;
             if (int.TryParse(tbTimeStep.Text, out int valorTempo))
             {
                 TimeStep = valorTempo;
             }
 
-            // Limpa a cor de fundo de todos os Labels
-            LimparCoresDeFundo();
-
-            int proximaColunaVerificada = (ultimaColunaVerificada + 1) % Colunas;
-            while (loop_verif)
+            // Itera sobre os itens da CheckedListBox
+            for (int indiceItem = 0; indiceItem < checkedListBox1.Items.Count; indiceItem++)
             {
+                int valorProcurado = Convert.ToInt32(checkedListBox1.Items[indiceItem]);
+
+                // Itera sobre todas as colunas
                 for (int j = 0; j < Linhas; j++)
                 {
-                    // Define a cor de fundo do próximo Label em cada coluna como verde
+                    // Itera sobre todas as linhas
                     for (int i = 0; i < Colunas; i++)
                     {
                         memoriaPrincipal[j, i].BackColor = Color.Yellow;
-                        await Task.Delay(TimeStep); // Aguarda um atraso de acordo com o valor de TimeStep
-                        memoriaPrincipal[j, i].BackColor = Color.Transparent;
-                        break;
+                        await Task.Delay(TimeStep); // Aguarda um atraso de 100 milissegundos antes de limpar as cores
+                        LimparCoresDeFundo(); // Limpa a cor de fundo após o atraso
+
+                        // Verifica se o item na primeira CheckedListBox corresponde ao valor atual
+                        int valorAtual = Convert.ToInt32(memoriaPrincipal[j, i].Text);
+                        if (valorProcurado == valorAtual)
+                        {
+                            checkedListBox1.SetSelected(1, true);
+                            checkedListBox1.SetSelected(indiceItem, true);
+                            if (memoriaPrincipal[j, i].Text == valorProcurado.ToString())
+                            {
+                                // Obtém o índice do item na CheckedListBox correspondente ao valor procurado
+                                int indiceItemCorrespondente = checkedListBox1.Items.IndexOf(valorProcurado);
+
+                                // Marca o item na CheckedListBox como selecionado
+
+                                // Marca o item na CheckedListBox como checado
+                                checkedListBox1.SetItemChecked(indiceItemCorrespondente, true);
+                            }
+                            //checkedListBox1.SetItemChecked(indiceItem + 1, true);
+
+                                memoriaPrincipal[j, i].BackColor = Color.LimeGreen; // Define a cor verde
+                      
+
+                            // Verifica se o valor está presente na memória cache
+                            bool valorEncontrado = false;
+                            for (int k = 0; k < CLinhas; k++)
+                            {
+                                for (int l = 0; l < CColunas; l++)
+                                {
+                                    memoriaCache[k, l].BackColor = Color.Yellow;
+                                    await Task.Delay(TimeStep); // Aguarda um atraso de 100 milissegundos antes de limpar as cores
+                                    memoriaCache[k, l].BackColor = Color.LimeGreen;
+                                    //LimparCoresDeFundoCache(); // Limpa a cor de fundo após o atraso
+                                    if (Convert.ToInt32(memoriaCache[k, l].Text) == valorAtual) // Verifica se o valor está presente na memória cache
+                                    {
+                                        memoriaCache[k, l].BackColor = Color.LimeGreen; // Define a cor verde
+
+                                        valorEncontrado = true;
+                                        break;
+                                    }
+                                }
+                                if (valorEncontrado)
+                                    break;
+                            }
+                        }
                     }
                 }
             }
@@ -215,7 +240,10 @@ namespace memory_simulator
                         int valorAtual = Convert.ToInt32(memoriaPrincipal[j, i].Text);
                         if (valorProcurado == valorAtual)
                         {
-                            checkedListBox1.SetSelected(indiceItem, true);
+                            if (checkedListBox1.SelectedIndex < checkedListBox1.Items.Count - 1)
+                            {
+                                checkedListBox1.SetSelected(indiceItem + 1, true);
+                            }
                             memoriaPrincipal[j, i].BackColor = Color.Red; // Define a cor vermelha
                             await Task.Delay(100); // Aguarda meio segundo para a mudança de cor ser visível
 
@@ -226,13 +254,16 @@ namespace memory_simulator
                                 for (int l = 0; l < CColunas; l++)
                                 {
                                     memoriaCache[k, l].BackColor = Color.Yellow;
-                                    await Task.Delay(TimeStep); // Aguarda um atraso de 100 milissegundos antes de limpar as cores
-                                    LimparCoresDeFundoCache(); // Limpa a cor de fundo após o atraso
+                                    await Task.Delay(TimeStep);
+                                    memoriaCache[k, l].BackColor = Color.Red;
+                                    // LimparCoresDeFundoCache(); // Limpa a cor de fundo após o atraso
                                     if (memoriaCache[k, l].Text == "0") // Verifica se a posição está vazia
                                     {
-                                        memoriaCache[k, l].Text = valorAtual.ToString(); // Armazena o valor na posição disponível
+
                                         memoriaCache[k, l].BackColor = Color.Red; // Marca o label na matriz memoriaCache com a cor vermelha
-                                        await Task.Delay(100); // Aguarda meio segundo para a mudança de cor ser visível
+
+                                        memoriaCache[k, l].Text = valorAtual.ToString(); // Armazena o valor na posição disponível
+                                        //await Task.Delay(100); // Aguarda meio segundo para a mudança de cor ser visível
                                         posicaoEncontrada = true;
                                         break;
                                     }
@@ -246,11 +277,38 @@ namespace memory_simulator
             }
         }
 
+        bool loop_verif = false; // Inicialmente, o loop não está ativo
+        private bool botaoClicado = false;
+        private bool acessoConstanteAtivo = false;
+        private async void Acesso_Constante_Click(object sender, EventArgs e)
+        {
+            acessoConstanteAtivo = !acessoConstanteAtivo; // Inverte o estado do acesso constante
 
+            if (acessoConstanteAtivo)
+            {
+                // Inicia o loop de acesso constante em uma thread separada para não travar a interface do usuário
+                Task.Run(() => RealizarAcessoConstante());
+            }
+        }
+        //Não finalizado
+        private async Task RealizarAcessoConstante()
+        {
+            Random random = new Random();
 
+            while (acessoConstanteAtivo)
+            {
+                // Adiciona um item aleatório ao CheckedListBox
+                int novoItem = random.Next(100); 
+                checkedListBox1.Items.Add(novoItem);
 
+                // Realiza a verificação na memória principal e na memória cache para o novo item
+                await VerificarValoresNaMemoriaPrincipal();
+                await VerificarValoresNaMemoria_Cache();
 
-
+                // Aguarda um tempo antes de continuar para não sobrecarregar o sistema
+                await Task.Delay(1000); // Por exemplo, aguarda 1 segundo
+            }
+        }
         // Método para limpar a cor de fundo de todos os Labels
         private void LimparCoresDeFundo()
         {
@@ -258,14 +316,14 @@ namespace memory_simulator
             {
                 for (int j = 0; j < Linhas; j++)
                 {
-
-                memoriaPrincipal[j, i].BackColor = Color.Transparent;
-
+                    if (memoriaPrincipal[j, i].BackColor == Color.Yellow)
+                    {
+                        memoriaPrincipal[j, i].BackColor = Color.Transparent;
+                    }
                 }
             }
         }
-
-
+        //talvez inutilizavel
         private void LimparCoresDeFundoCache()
         {
             for (int i = 0; i < CColunas; i++)
@@ -277,6 +335,8 @@ namespace memory_simulator
             }
         }
 
+
+        //btn Resetar
         private void btnResetar_Click(object sender, EventArgs e)
         {
             // Limpa os valores aleatórios
@@ -393,5 +453,7 @@ namespace memory_simulator
                 top += memoriaPrincipal[0, 0].Height + 5; // Adicione uma margem de 5 pixels entre as linhas
             }
         }
+
+
     }   
 }
