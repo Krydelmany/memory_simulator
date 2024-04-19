@@ -55,7 +55,7 @@ namespace memory_simulator
             this.gbMemoriaPrincipal.Font = new System.Drawing.Font("Segoe UI Emoji", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbMemoriaPrincipal.Location = new System.Drawing.Point(12, 12);
             this.gbMemoriaPrincipal.Name = "gbMemoriaPrincipal";
-            this.gbMemoriaPrincipal.Size = new System.Drawing.Size(528, 240);
+            this.gbMemoriaPrincipal.Size = new System.Drawing.Size(653, 248);
             this.gbMemoriaPrincipal.TabIndex = 0;
             this.gbMemoriaPrincipal.TabStop = false;
             this.gbMemoriaPrincipal.Text = "Memória Principal";
@@ -72,7 +72,7 @@ namespace memory_simulator
             // 
             // btnAlternarVerificacao
             // 
-            this.btnAlternarVerificacao.Location = new System.Drawing.Point(163, 100);
+            this.btnAlternarVerificacao.Location = new System.Drawing.Point(163, 119);
             this.btnAlternarVerificacao.Name = "btnAlternarVerificacao";
             this.btnAlternarVerificacao.Size = new System.Drawing.Size(103, 23);
             this.btnAlternarVerificacao.TabIndex = 2;
@@ -82,7 +82,7 @@ namespace memory_simulator
             // 
             // tbTimeStep
             // 
-            this.tbTimeStep.Location = new System.Drawing.Point(82, 102);
+            this.tbTimeStep.Location = new System.Drawing.Point(82, 121);
             this.tbTimeStep.Name = "tbTimeStep";
             this.tbTimeStep.Size = new System.Drawing.Size(75, 20);
             this.tbTimeStep.TabIndex = 3;
@@ -93,7 +93,7 @@ namespace memory_simulator
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 104);
+            this.label1.Location = new System.Drawing.Point(3, 123);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 13);
             this.label1.TabIndex = 4;
@@ -103,9 +103,9 @@ namespace memory_simulator
             // 
             this.gpListaAcesso.Controls.Add(this.checkedListBox1);
             this.gpListaAcesso.Font = new System.Drawing.Font("Segoe UI Emoji", 8.25F);
-            this.gpListaAcesso.Location = new System.Drawing.Point(566, 13);
+            this.gpListaAcesso.Location = new System.Drawing.Point(671, 12);
             this.gpListaAcesso.Name = "gpListaAcesso";
-            this.gpListaAcesso.Size = new System.Drawing.Size(191, 239);
+            this.gpListaAcesso.Size = new System.Drawing.Size(191, 248);
             this.gpListaAcesso.TabIndex = 6;
             this.gpListaAcesso.TabStop = false;
             this.gpListaAcesso.Text = "Lista de Acesso";
@@ -143,9 +143,9 @@ namespace memory_simulator
             // gbMemoriaCache
             // 
             this.gbMemoriaCache.Font = new System.Drawing.Font("Segoe UI Emoji", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbMemoriaCache.Location = new System.Drawing.Point(566, 258);
+            this.gbMemoriaCache.Location = new System.Drawing.Point(671, 268);
             this.gbMemoriaCache.Name = "gbMemoriaCache";
-            this.gbMemoriaCache.Size = new System.Drawing.Size(191, 153);
+            this.gbMemoriaCache.Size = new System.Drawing.Size(191, 151);
             this.gbMemoriaCache.TabIndex = 11;
             this.gbMemoriaCache.TabStop = false;
             this.gbMemoriaCache.Text = "Memória Cache";
@@ -173,7 +173,7 @@ namespace memory_simulator
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(272, 100);
+            this.button1.Location = new System.Drawing.Point(272, 119);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(87, 23);
             this.button1.TabIndex = 14;
@@ -192,7 +192,7 @@ namespace memory_simulator
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btnLimparMP);
             this.groupBox1.Controls.Add(this.btnListaAcesso);
-            this.groupBox1.Location = new System.Drawing.Point(12, 258);
+            this.groupBox1.Location = new System.Drawing.Point(12, 266);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(378, 153);
             this.groupBox1.TabIndex = 15;
@@ -203,7 +203,7 @@ namespace memory_simulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 434);
+            this.ClientSize = new System.Drawing.Size(873, 438);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbMemoriaCache);
             this.Controls.Add(this.gpListaAcesso);

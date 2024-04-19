@@ -160,7 +160,10 @@ namespace memory_simulator
                     // Itera sobre todas as linhas
                     for (int i = 0; i < Colunas; i++)
                     {
-                        memoriaPrincipal[j, i].BackColor = Color.Yellow;
+                        if (memoriaPrincipal[j, i].BackColor != Color.LimeGreen) // Verifica se a célula não está marcada como vermelha
+                        {
+                            memoriaPrincipal[j, i].BackColor = Color.Yellow;
+                        }
                         await Task.Delay(TimeStep); // Aguarda um atraso de 100 milissegundos antes de limpar as cores
                         LimparCoresDeFundo(); // Limpa a cor de fundo após o atraso
 
@@ -232,7 +235,12 @@ namespace memory_simulator
                     // Itera sobre todas as linhas
                     for (int i = 0; i < Colunas; i++)
                     {
-                        memoriaPrincipal[j, i].BackColor = Color.Yellow;
+                        // Define a cor amarela para todas as células
+                        if (memoriaPrincipal[j, i].BackColor != Color.Red) // Verifica se a célula não está marcada como vermelha
+                        {
+                            memoriaPrincipal[j, i].BackColor = Color.Yellow;
+                        }
+
                         await Task.Delay(TimeStep); // Aguarda um atraso de 100 milissegundos antes de limpar as cores
                         LimparCoresDeFundo(); // Limpa a cor de fundo após o atraso
 
@@ -240,11 +248,13 @@ namespace memory_simulator
                         int valorAtual = Convert.ToInt32(memoriaPrincipal[j, i].Text);
                         if (valorProcurado == valorAtual)
                         {
+                            // Define a cor vermelha para a célula atual
+                            
+                            memoriaPrincipal[j, i].BackColor = Color.Red; // Define a cor vermelha
                             if (checkedListBox1.SelectedIndex < checkedListBox1.Items.Count - 1)
                             {
                                 checkedListBox1.SetSelected(indiceItem + 1, true);
                             }
-                            memoriaPrincipal[j, i].BackColor = Color.Red; // Define a cor vermelha
                             await Task.Delay(100); // Aguarda meio segundo para a mudança de cor ser visível
 
                             // Encontra a próxima posição disponível na memória cache
@@ -259,11 +269,11 @@ namespace memory_simulator
                                     // LimparCoresDeFundoCache(); // Limpa a cor de fundo após o atraso
                                     if (memoriaCache[k, l].Text == "0") // Verifica se a posição está vazia
                                     {
-
+                                        // Marca a célula correspondente na memória cache como vermelha
                                         memoriaCache[k, l].BackColor = Color.Red; // Marca o label na matriz memoriaCache com a cor vermelha
 
-                                        memoriaCache[k, l].Text = valorAtual.ToString(); // Armazena o valor na posição disponível
-                                        //await Task.Delay(100); // Aguarda meio segundo para a mudança de cor ser visível
+                                        // Armazena o valor na posição disponível
+                                        memoriaCache[k, l].Text = valorAtual.ToString();
                                         posicaoEncontrada = true;
                                         break;
                                     }
@@ -277,6 +287,9 @@ namespace memory_simulator
             }
         }
 
+
+
+        //Não finalizado
         bool loop_verif = false; // Inicialmente, o loop não está ativo
         private bool botaoClicado = false;
         private bool acessoConstanteAtivo = false;
@@ -290,7 +303,6 @@ namespace memory_simulator
                 Task.Run(() => RealizarAcessoConstante());
             }
         }
-        //Não finalizado
         private async Task RealizarAcessoConstante()
         {
             Random random = new Random();
@@ -318,7 +330,7 @@ namespace memory_simulator
                 {
                     if (memoriaPrincipal[j, i].BackColor == Color.Yellow)
                     {
-                        memoriaPrincipal[j, i].BackColor = Color.Transparent;
+                     memoriaPrincipal[j, i].BackColor = Color.Transparent;
                     }
                 }
             }
@@ -453,7 +465,5 @@ namespace memory_simulator
                 top += memoriaPrincipal[0, 0].Height + 5; // Adicione uma margem de 5 pixels entre as linhas
             }
         }
-
-
     }   
 }
