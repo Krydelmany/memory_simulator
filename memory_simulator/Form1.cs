@@ -415,7 +415,7 @@ namespace memory_simulator
                     // Criar um novo label
                     Label label = new Label();
                     label.AutoSize = false;
-                    label.Size = new Size(33, 20);
+                    label.Size = new Size(30, 20);
                     label.Left = left;
                     label.Top = top;
                     label.BorderStyle = BorderStyle.Fixed3D;
