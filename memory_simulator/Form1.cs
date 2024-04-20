@@ -28,8 +28,8 @@ namespace memory_simulator
             InitializeComponent();
             MemoriaPrincipal();
             MemoriaCache();
-            btnAlternarVerificacao.Enabled = false;
-            button1.Enabled = false;
+            btnCacheMiss.Enabled = false;
+            btnCacheHit.Enabled = false;
             btnResetar.Click += new EventHandler(btnResetar_Click);
         }
 
@@ -37,7 +37,7 @@ namespace memory_simulator
         private List<int> valoresAleatorios = new List<int>();
         private void btnGerarNumeros_Click(object sender, EventArgs e)
         {
-            btnAlternarVerificacao.Enabled = true;
+            btnCacheMiss.Enabled = true;
             Random random = new Random();
 
             for (int i = 0; i < Linhas; i++)
@@ -60,7 +60,7 @@ namespace memory_simulator
 
         private void btnLimparLista_Click(object sender, EventArgs e)
         {
-            btnAlternarVerificacao.Enabled = false;
+            btnCacheMiss.Enabled = false;
             for (int i = 0; i < Linhas; i++)
             {
                 for (int j = 0; j < Colunas; j++)
@@ -74,6 +74,17 @@ namespace memory_simulator
             checkedListBox1.Items.Clear();
             valoresAleatorios.Clear();
 
+        }
+
+        private void btnLimparCache_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < CLinhas; i++)
+            {
+                for (int j = 0; j < CColunas; j++)
+                {
+                    memoriaCache[i, j].Text = "0"; // Atribui o valor aleatório ao Texto do Label
+                }
+            }
         }
         private void btnListaAcesso_Click(object sender, EventArgs e)
         {
@@ -131,7 +142,7 @@ namespace memory_simulator
 
         private async void btnAlternarVerificacao_Click(object sender, EventArgs e)
         {
-            button1.Enabled = Enabled;
+            btnCacheHit.Enabled = Enabled;
             await VerificarValoresNaMemoriaPrincipal();
         }
 
@@ -404,7 +415,7 @@ namespace memory_simulator
                     // Criar um novo label
                     Label label = new Label();
                     label.AutoSize = false;
-                    label.Size = new Size(30, 20);
+                    label.Size = new Size(33, 20);
                     label.Left = left;
                     label.Top = top;
                     label.BorderStyle = BorderStyle.Fixed3D;
@@ -465,5 +476,7 @@ namespace memory_simulator
                 top += memoriaPrincipal[0, 0].Height + 5; // Adicione uma margem de 5 pixels entre as linhas
             }
         }
+
+
     }   
 }
