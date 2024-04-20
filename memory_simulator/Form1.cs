@@ -142,6 +142,7 @@ namespace memory_simulator
 
         private async void btnAlternarVerificacao_Click(object sender, EventArgs e)
         {
+            checkedListBox1.SetSelected(0, true);
             btnCacheHit.Enabled = Enabled;
             await VerificarValoresNaMemoriaPrincipal();
         }
@@ -149,7 +150,7 @@ namespace memory_simulator
 
         private void button1_Click(object sender, EventArgs e)
         {
-            VerificarValoresNaMemoria_Cache();
+            Task tskVerificarCache = VerificarValoresNaMemoria_Cache();
         }
 
         private async Task VerificarValoresNaMemoria_Cache()
@@ -159,7 +160,7 @@ namespace memory_simulator
             {
                 TimeStep = valorTempo;
             }
-
+                    
             // Itera sobre os itens da CheckedListBox
             for (int indiceItem = 0; indiceItem < checkedListBox1.Items.Count; indiceItem++)
             {
@@ -225,7 +226,6 @@ namespace memory_simulator
                 }
             }
         }
-
 
         private async Task VerificarValoresNaMemoriaPrincipal()
         {
@@ -297,9 +297,7 @@ namespace memory_simulator
                 }
             }
         }
-
-
-
+        /*
         //Não finalizado
         bool loop_verif = false; // Inicialmente, o loop não está ativo
         private bool botaoClicado = false;
@@ -332,6 +330,8 @@ namespace memory_simulator
                 await Task.Delay(1000); // Por exemplo, aguarda 1 segundo
             }
         }
+        */
+
         // Método para limpar a cor de fundo de todos os Labels
         private void LimparCoresDeFundo()
         {
@@ -346,18 +346,6 @@ namespace memory_simulator
                 }
             }
         }
-        //talvez inutilizavel
-        private void LimparCoresDeFundoCache()
-        {
-            for (int i = 0; i < CColunas; i++)
-            {
-                for (int j = 0; j < CLinhas; j++)
-                {
-                    memoriaCache[j, i].BackColor = Color.Transparent;
-                }
-            }
-        }
-
 
         //btn Resetar
         private void btnResetar_Click(object sender, EventArgs e)
@@ -396,7 +384,6 @@ namespace memory_simulator
             checkedListBox1.Items.Clear();
             valoresAleatorios.Clear();
         }
-
 
         private void MemoriaPrincipal()
         {
@@ -476,7 +463,5 @@ namespace memory_simulator
                 top += memoriaPrincipal[0, 0].Height + 5; // Adicione uma margem de 5 pixels entre as linhas
             }
         }
-
-
     }   
 }
